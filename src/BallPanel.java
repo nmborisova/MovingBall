@@ -45,43 +45,19 @@ public class BallPanel extends JPanel {
 
         graphics.drawImage(img, xCoord, yCoord, this);
     }
-//    public int getxCoord() {
-//        return xCoord;
-//    }
-//
-//    public void setxCoord(int xCoord) {
-//        this.xCoord = xCoord;
-//    }
-//
-//    public int getyCoord() {
-//        return yCoord;
-//    }
-//
-//    public void setyCoord(int yCoord) {
-//        this.yCoord = yCoord;
-//    }
 
-    public void move(){
+    public void move() throws InterruptedException {
 
         int width = 400;
         int height = 400;
-        int dx = 3;
-        int dy = 3;
-        int radius = 5;
-        int x=0;
-        int y=0;
 
-//        while(true) {
+        while(true) {
 
-            if(xCoord+25>width)
-                dirXRight=false;
-            else
-                dirXRight=true;
+            if((dirXRight && xCoord+125>width) || (!dirXRight && xCoord-125<0))
+                dirXRight=!dirXRight;
 
-            if(yCoord+25>height)
-                dirYDown=false;
-            else
-                dirYDown=true;
+            if((dirYDown && yCoord+125>height) || (!dirYDown && yCoord-125<0))
+                dirYDown=!dirYDown;
 
 
             if(dirXRight)
@@ -94,10 +70,7 @@ public class BallPanel extends JPanel {
             else
                 up();
 
-//                try {
-//                    Thread.sleep(50);
-//                } catch (InterruptedException e){
-//                }
-//        }
+            Thread.sleep(50);
+        }
     }
 }
